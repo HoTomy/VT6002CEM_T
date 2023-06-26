@@ -32,7 +32,7 @@ public class Result extends AppCompatActivity {
         double hr=bundle.getDouble("HR");
 
 
-        String resultMsg = getString(R.string.up_msg) + (int)up + " mmHg，\n";
+        String resultMsg = getString(R.string.up_msg) + (int)up + " mmHg,\n";
         if(up<90)
         {resultMsg += getString(R.string.up_l_msg)+"\n";}
         else if (up>139)
@@ -42,7 +42,7 @@ public class Result extends AppCompatActivity {
         resultMsg += "\n";
         resultMsg += "\n";
 
-        resultMsg += getString(R.string.lp_msg) + (int)lp + " mmHg，\n";
+        resultMsg += getString(R.string.lp_msg) + (int)lp + " mmHg,\n";
         if(lp<60)
         {resultMsg += getString(R.string.lp_l_msg)+"\n";}
         else if (lp>89)
@@ -52,7 +52,7 @@ public class Result extends AppCompatActivity {
         resultMsg += "\n";
 
         resultMsg += "\n";
-        resultMsg += getString(R.string.hr_msg) +(int)hr + " BPN，\n";
+        resultMsg += getString(R.string.hr_msg) +(int)hr + " BPN,\n";
         if(hr<60)
         {resultMsg += getString(R.string.hr_l_msg)+"\n";}
         else if (hr>100)

@@ -9,6 +9,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
@@ -46,18 +47,20 @@ public class Detail extends AppCompatActivity {
         tvTel = findViewById(R.id.text_telephone);
         tvOh = findViewById(R.id.text_oh);
         btnBack = findViewById(R.id.btn_back);
-        btnMap = findViewById(R.id.btn_map);
         btnDir = findViewById(R.id.btn_dir);
         btnDial = findViewById(R.id.btn_dial);
         btnShare = findViewById(R.id.btn_share);
         tvDis = findViewById(R.id.text_dis);
         tvBookWeb = findViewById(R.id.textView8);
         WebView webView = (WebView) findViewById(R.id.webview);
-        webView.loadUrl("https://www.google.com/maps/search/?api=1&query=\"+info.lat+ \",\" + info.lng");
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             final ClinicInfo info = (ClinicInfo) bundle.getSerializable("data");
+            webView.loadUrl("https://www.google.com/maps/search/?api=1&query=" + info.lat + "," + info.lng);
             tvName.setText(info.name);
             tvAddress.setText(info.address);
             tvTel.setText(info.telephone);
@@ -205,22 +208,5 @@ public class Detail extends AppCompatActivity {
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         startActivity(intent);}}});
 
-
-            btnMap.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startMap(info.lat, info.lng);
-                }
-
-                public void startMap(Double lat, Double lng) {
-                    try {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/search/?api=1&query=" + lat + "," + lng));
-                        intent.setPackage("com.google.android.apps.maps");
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        //      intent.setData(Uri.parse("geo:22.2571,114.2964"));
-                        startActivity(intent);}}});
-        }}
+         }}
 }
