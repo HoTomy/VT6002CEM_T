@@ -9,6 +9,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,23 +25,21 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class Detail extends AppCompatActivity implements OnMapReadyCallback {
+public class Detail extends AppCompatActivity {
 
     private GoogleMap mMap;
-    MapView mapView;
-    TextView tvName, tvAddress, tvTel, tvBook, tvOh, tvDis, tvBookWeb;
+     TextView tvName, tvAddress, tvTel, tvBook, tvOh, tvDis, tvBookWeb;
     Button btnBack, btnMap, btnDir, btnDial, btnShare;
     LocationManager locationManager;
 
     Location cLocation;
 
+    WebView webView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        mapView = (MapView) findViewById(R.id.mapFrag);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
         tvName = findViewById(R.id.text_name);
         tvAddress = findViewById(R.id.text_add);
         tvBook = findViewById(R.id.text_booktel);
@@ -53,7 +52,8 @@ public class Detail extends AppCompatActivity implements OnMapReadyCallback {
         btnShare = findViewById(R.id.btn_share);
         tvDis = findViewById(R.id.text_dis);
         tvBookWeb = findViewById(R.id.textView8);
-
+        WebView webView = (WebView) findViewById(R.id.webview);
+        webView.loadUrl("https://www.google.com/maps/search/?api=1&query=\"+info.lat+ \",\" + info.lng");
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -139,7 +139,7 @@ public class Detail extends AppCompatActivity implements OnMapReadyCallback {
                 public void onClick(View v) {
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, "I am now going to"+info.name+ "\nAddress："+info.address+ "\nLocation：https://www.google.com/maps/search/?api=1&query="+info.lat+ "," + info.lng);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "I am now going to"+info.name+ "\n \n Address："+info.address+ "\n \n Location：https://www.google.com/maps/search/?api=1&query="+info.lat+ "," + info.lng);
                     sendIntent.setType("text/plain");
                     startActivity(sendIntent);
                 }
@@ -222,22 +222,5 @@ public class Detail extends AppCompatActivity implements OnMapReadyCallback {
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         //      intent.setData(Uri.parse("geo:22.2571,114.2964"));
                         startActivity(intent);}}});
-
         }}
-
-    @Override
-    public void onMapReady(@NonNull GoogleMap googleMap) {
-        mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
-    @Override
-    public void onResume() {
-        mapView.onResume();
-        super.onResume();
-    }
 }
