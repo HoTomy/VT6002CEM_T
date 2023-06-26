@@ -74,7 +74,7 @@ class BiLi : AppCompatActivity() {
         val biometricManager = BiometricManager.from(this)
         when (biometricManager.canAuthenticate(BIOMETRIC_STRONG or DEVICE_CREDENTIAL)) {
             BiometricManager.BIOMETRIC_SUCCESS ->
-                biometricLoginButton.text = "Please login with your fingerprint."
+                biometricLoginButton.text = "Please use biometricsusing for the authentication."
             BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE ->
                 biometricLoginButton.text = "No biometric features available on this device."
             BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE ->
@@ -92,7 +92,7 @@ class BiLi : AppCompatActivity() {
         val biometricManager = BiometricManager.from(this)
         when (biometricManager.canAuthenticate(BIOMETRIC_STRONG or DEVICE_CREDENTIAL)) {
             BiometricManager.BIOMETRIC_SUCCESS ->
-                biometricStatusTextView.text = "App can authenticate using biometrics."
+                biometricStatusTextView.text = "Please use biometricsusing for the authentication."
             BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE ->
                 biometricStatusTextView.text = "No biometric features available on this device."
             BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE ->
