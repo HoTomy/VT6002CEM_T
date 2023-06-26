@@ -2,7 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,14 +20,34 @@
         android:theme="@style/Theme.VT6002C"
         tools:targetApi="31">
         <activity
+            android:name=".Result"
+            android:exported="false" />
+        <activity
+            android:name=".Input"
+            android:exported="true"/>
+
+        <activity
+            android:name=".AE"
+            android:exported="false" />
+        <activity
+            android:name=".BiLi"
+            android:exported="false" />
+        <activity android:name=".Detail" />
+        <activity android:name=".Clinic" />
+        <activity android:name=".Hospital" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyDdbt62nzWqMI0flH1Aa6Dkh-qf9TfvegA" />
 </manifest>
