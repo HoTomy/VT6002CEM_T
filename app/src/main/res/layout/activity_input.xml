@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#8BC34A"
+    android:textColor="#000000"
+    android:orientation="vertical"
     tools:context=".Input">
 
     <TableLayout
@@ -15,11 +16,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="#00000000"
-        android:padding="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="1dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -146,38 +143,43 @@
             android:layout_marginTop="1dp" />
     </TableLayout>
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <Button
         android:id="@+id/btn_confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:text="Confirm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Confirm" />
 
     <Button
         android:id="@+id/btn_del"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:onClick="delAllRecords"
-        android:text="Delete all record"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.563"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="Delete all record" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFEB3B"
+        android:text="     Input Data and Time  |  HP   |  LP   |  HR  |"
+        android:textColor="#000000"
+        android:textSize="18sp"/>
+
 
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="408dp"
-        android:layout_height="361dp"
-        android:layout_marginTop="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_del"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/head"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp">
 
 
         <TextView
@@ -190,25 +192,9 @@
             android:scrollbarStyle="insideInset"
             android:scrollbars="vertical"
             android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteX="-8dp" />
     </ScrollView>
 
-    <TextView
-        android:id="@+id/head"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:background="#FFEB3B"
-        android:gravity="left"
-        android:padding="3dp"
-        android:text="Input Data and Time  |  HP   |  LP   |  HR   |"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_confirm" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
