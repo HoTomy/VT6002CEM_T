@@ -85,7 +85,7 @@ public class Input extends AppCompatActivity {
 
         @Override
         public void onClick(View V) {
-            SimpleDateFormat formatter   =   new   SimpleDateFormat   ("dd/mm/yyyy  HH:mm:ss");
+            SimpleDateFormat formatter   =   new   SimpleDateFormat   ("dd/MM/yyyy  HH:mm:ss");
             Date curDate =  new Date(System.currentTimeMillis());
             String strUp = et_up.getText().toString();
             String strLp = et_lp.getText().toString();
