@@ -1,3 +1,30 @@
 <resources>
-    <string name="app_name">VT6002C</string>
+    <string name="app_name">Health and Help</string>
+    <string name="clinic">General Outpatient Clinics under the Hospital Authority</string>
+    <string name="hospital">General Outpatient Clinics under the Hospital Authority</string>
+    <string name="add">Address</string>
+    <string name="email">Email Address</string>
+    <string name="booking">Booking Tel</string>
+    <string name="telephone">Telephone</string>
+    <string name="fax">Fax</string>
+    <string name="website">Website</string>
+    <string name="full">All Hong Kong</string>
+    <string name="hk">HKI</string>
+    <string name="kl">KLN</string>
+    <string name="nt">NT</string>
+    <string name="no_input_msg">Please Input Your Data!</string>
+    <string name="up_msg">Your Upper Blood Pressure is:</string>
+    <string name="lp_msg">Your Lower Blood Pressure:</string>
+    <string name="hr_msg">Your Heart Rate is:</string>
+    <string name="up_n_msg">Your Upper Blood Pressure is standard.</string>
+    <string name="up_l_msg">Your Upper Blood Pressure is too low.</string>
+    <string name="up_u_msg">Your Upper Blood Pressure is too high.</string>
+    <string name="lp_n_msg">Your Lower Blood Pressure is Standard.</string>
+    <string name="lp_l_msg">Your Lower Blood Pressure is too low.</string>
+    <string name="lp_u_msg">Your Lower Blood Pressure is too high.</string>
+    <string name="hr_n_msg">Your Heart Rate is standard.</string>
+    <string name="hr_l_msg">Your Heart Rate is too low.</string>
+    <string name="hr_u_msg">Your Heart Rate is too high.</string>
+    <string name="no_records">No Record.</string>
+
 </resources>
