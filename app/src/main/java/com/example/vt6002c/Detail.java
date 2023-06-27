@@ -4,9 +4,14 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -15,16 +20,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Detail extends AppCompatActivity {
 
@@ -52,10 +51,14 @@ public class Detail extends AppCompatActivity {
         btnShare = findViewById(R.id.btn_share);
         tvDis = findViewById(R.id.text_dis);
         tvBookWeb = findViewById(R.id.textView8);
+
         WebView webView = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
+        SensorManager sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        Sensor accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -100,37 +103,50 @@ public class Detail extends AppCompatActivity {
             });
 
             btnDir.setOnClickListener(new View.OnClickListener() {
+
+
                 @Override
                 public void onClick(View view) {
                     if (info.distance < 2) {
                         String origin = String.format("%.8f", cLocation.getLatitude()) + "," + String.format("%.8f", cLocation.getLongitude());
                         String des = String.format("%.8f", info.lat) + "," + String.format("%.8f", info.lng);
-                        //     String origin = "";
-                        //     String des = "";
+
+
                         openGoogleMapDir(origin, des);
-                    } else {
+
+                   } else {
                         Toast.makeText(Detail.this, "Please try again within 2km", Toast.LENGTH_LONG).show();
                     }
                 }
 
                 void openGoogleMapDir(String origin, String des) {
-                    String url = "https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + des + "&travelmode=walking";
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(intent);
 
-                }
-            });
+                    SensorEvent event = null;
+/*
+                    if (event.sensor.getType() ==Sensor.TYPE_ACCELEROMETER) {
+                        float lat = event.values[0];
+                        float lng = event.values[1];
+                        des = String.format("%.8f", lat) + "," + String.format("%.8f", lng);
+                        String url = "https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + des + "&travelmode=walking";
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        startActivity(intent);}
+
+                    else {
+
+ */
+                        des = String.format("%.8f", info.lat) + "," + String.format("%.8f", info.lng);
+                        String url = "https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + des + "&travelmode=walking";
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        startActivity(intent);}
+
+            }
+            );
+
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
+
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
+             return;
             }
             cLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 

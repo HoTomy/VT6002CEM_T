@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Health and Help</string>
     <string name="clinic">General Outpatient Clinics under the Hospital Authority</string>
-    <string name="hospital">General Outpatient Clinics under the Hospital Authority</string>
+    <string name="hospital">Hospitals under the Hospital Authority</string>
     <string name="add">Address</string>
     <string name="email">Email Address</string>
     <string name="booking">Booking Tel</string>

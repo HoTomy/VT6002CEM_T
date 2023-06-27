@@ -5,6 +5,10 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -93,11 +97,12 @@ public class Hospital extends AppCompatActivity {
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         getLocation();
     }
+
     void checkPermission(){
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1010);}
             else {
-            cLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            cLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0f, new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
@@ -106,18 +111,17 @@ public class Hospital extends AppCompatActivity {
 
                 @Override
                 public void onStatusChanged(String provider, int status, Bundle extras) {
-
                 }
 
                 @Override
                 public void onProviderEnabled(String provider) {
-
                 }
 
                 @Override
                 public void onProviderDisabled(String provider) {
                 }
-            });
+            }
+           );
         }}
 
     void getLocation()    {

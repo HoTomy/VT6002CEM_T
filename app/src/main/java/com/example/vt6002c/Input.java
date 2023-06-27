@@ -26,7 +26,7 @@ public class Input extends AppCompatActivity {
     String dbName = "customerDB";
     private EditText et_up, et_lp, et_hr, et_da, et_ti;
 
-    private Button btnRs, btnCr;
+    private Button btnRs, btnCr, btnMain;
     TextView tvRecords;
     Date date;
     ListView listView;
@@ -39,10 +39,20 @@ public class Input extends AppCompatActivity {
         et_up = findViewById(R.id.hp);
         et_lp = findViewById(R.id.lp);
         et_hr = findViewById(R.id.pu);
+        btnMain=findViewById(R.id.m_b);
         btnRs = findViewById(R.id.btn_confirm);
         btnRs.setOnClickListener(clickListener);
 
         tvRecords = findViewById(R.id.tvRecords);
+
+
+        btnMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Input.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         db = openOrCreateDatabase(dbName, Context.MODE_PRIVATE, null);
         String sql = "CREATE TABLE if not exists customerTable ( id INTEGER PRIMARY KEY AUTOINCREMENT ," +

@@ -107,7 +107,7 @@ public class Clinic extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1010);}
         else {
-            cLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            cLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0f, new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
@@ -255,10 +255,6 @@ public class Clinic extends AppCompatActivity {
         listView.setOnItemClickListener(listener);
 
     }
-
-
-
-
 
     public void allDownload (View v){
         GetTextDataTask task = new GetTextDataTask();
